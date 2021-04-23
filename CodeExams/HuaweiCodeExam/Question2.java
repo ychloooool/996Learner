@@ -1,16 +1,13 @@
-package HuaweiCodeTest;
+package HuaweiCodeExam;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Queue;
 import java.util.Scanner;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class Question2 {
 
     /**
      * todo 问题描述
-     *
+     * 2021/4/22
      */
 
     public static void main(String[] args) {

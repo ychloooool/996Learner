@@ -1,4 +1,4 @@
-package HuaweiCodeTest;
+package HuaweiCodeExam;
 
 import java.util.Queue;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ public class Question1 {
 
     /**
      * todo 问题描述
-     *
+     * 2021/4/22
      */
 
 
@@ -25,7 +25,7 @@ public class Question1 {
             int a = sc.nextInt();
             int l = sc.nextInt();
             int n = sc.nextInt();
-            queue.add(new Order(a, l ,n));
+            queue.add(new Order(a, l, n));
             System.out.println("{add " + a + " " + l + " " + n + " }");
         }
 

@@ -1,4 +1,4 @@
-package HuaweiCodeTest;
+package HuaweiCodeExam;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class Question3 {
 
     /**
      * todo 问题描述
-     *
+     * 2021/4/22
      */
 
     public static void main(String[] args) {

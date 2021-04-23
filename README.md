@@ -1,2 +1,3 @@
-# DS-Alg-Java
-Data Structures and Algorithms in Java
+# 996Learner
+
+记录一个转码菜鸡的编程学习历程。
