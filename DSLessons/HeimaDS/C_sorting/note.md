@@ -12,13 +12,13 @@
 > public class Student implements Comparable<Student> {
 > 
 > 	private String name;
->     private int age;
->     
->     @Override
->     public int compareTo(Student that) {
->         return this.age - that.age;
->     }
->         
+> 	private int age;
+> 
+>  	@Override
+> 	public int compareTo(Student that) {
+> 		return this.age - that.age;
+> 	}
+>      
 > }
 > ```
 >
