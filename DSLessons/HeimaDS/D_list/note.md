@@ -120,6 +120,14 @@ ArrayList常用方法：==待补充==
 
 
 
+
+
+### 单向链表
+
+#### 概念
+
+单向链表是链表的一种，它由多个结点组成，每个结点都由一个数据域和一个指针域组成，数据域用来存储数据，指针域用来指向其他后继结点。链表的头结点的数据域不存储数据，指针域指向第一个真正存储数据的结点。
+
 #### 结点类API设计
 
 | 类名     | Node\<T\>                                       |
@@ -140,4 +148,61 @@ private class Node<T> {
 
 }
 ```
+
+#### API设计
+
+| 类名       | LinkList\<T\>                                                |
+| ---------- | ------------------------------------------------------------ |
+| 构造方法   | LinkList()：创建LinkList对象                                 |
+| 成员变量   | 1. public void clear()：清空线性表内容<br />2. public boolean isEmpty()：判断线性表是否为空<br />3. public int length()：获取线性表中元素的个数<br />4. public T get(int i)：读取并返回线性表中的第i个元素的值<br />5. public void insert(int i, T t)：在线性表的第i个元素之前插入一个值为t的数据元素<br />6. public void insert(T t)：向线性表中添加一个元素<br />7. public T remove(int i)：删除并返回线性表中第i个数据元素<br />8. public int indexOf(T t)：返回线性表中首次出现的指定的数据元素的位序号，不存在则返回-1 |
+| 成员内部类 | private class Node\<T\>：结点类                              |
+| 成员方法   | 1. private Node head：记录首结点<br />2. private int N：记录链表的长度 |
+
+
+
+
+
+### 双向链表
+
+#### 概念
+
+双向链表是链表的一种，它由多个结点组成，每个结点都由一个数据域和两个指针域组成，数据域用来存储数据，其中一个指针域用来指向后继结点，另一个指针域用来指向前驱结点。链表的头结点的数据域不存储数据，指向前驱结点的指针域值为null，指向后继结点的指针域指向第一个真正存储数据的结点。链表的尾结点的数据域不存储数据，指向后继结点的指针域值为null，指向前驱结点的指针域指向最后一个真正存储数据的结点。
+
+#### 结点类API设计
+
+| 类名     | Node\<T\>                                                    |
+| -------- | ------------------------------------------------------------ |
+| 构造方法 | Node(T t, Node pre, Node next)：构建Node对象                 |
+| 成员变量 | T item：存储元素<br />Node next：指向下一个结点<br />Node pre：指向上一个结点 |
+
+#### API设计
+
+| 类名       | TwoWayLinkList\<T\>                                          |
+| ---------- | :----------------------------------------------------------- |
+| 构造方法   | TwoWayLinkList()：创建LinkList对象                           |
+| 成员变量   | 1. public void clear()：清空线性表内容<br />2. public boolean isEmpty()：判断线性表是否为空<br />3. public int length()：获取线性表中元素的个数<br />4. public T get(int i)：读取并返回线性表中的第i个元素的值<br />5. public void insert(int i, T t)：在线性表的第i个元素之前插入一个值为t的数据元素<br />6. public void insert(T t)：向线性表中添加一个元素<br />7. public T remove(int i)：删除并返回线性表中第i个数据元素<br />8. public int indexOf(T t)：返回线性表中首次出现的指定的数据元素的位序号，不存在则返回-1<br />9. public T getFirst()：获取第一个元素<br />10. public T getLast()：获取最后一个元素 |
+| 成员内部类 | private class Node\<T\>：结点类                              |
+| 成员方法   | 1. private Node head：记录首结点<br />2. private Node last：记录尾结点<br />3. private int N：记录链表的长度 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
