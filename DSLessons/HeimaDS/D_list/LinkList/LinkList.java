@@ -39,7 +39,7 @@ public class LinkList<T> implements Iterable<T>{
 
     public T get(int i) {
         Node temp = this.head;
-        for (int j = 0; j <= i; j++) {
+        for (int j = -1; j < i; j++) {
             temp = temp.next;
         }
         return temp.item;
@@ -56,7 +56,7 @@ public class LinkList<T> implements Iterable<T>{
 
     public void insert(int i, T t) {
         Node temp = this.head;
-        for (int j = 0; j <= i - 1; j++) {
+        for (int j = -1; j < i - 1; j++) {
             temp = temp.next;
         }
         Node current = temp.next;
@@ -66,7 +66,7 @@ public class LinkList<T> implements Iterable<T>{
 
     public T remove(int i) {
         Node temp = this.head;
-        for (int j = 0; j <= i - 1; j++) {
+        for (int j = -1; j < i - 1; j++) {
             temp = temp.next;
         }
         Node current = temp.next;
