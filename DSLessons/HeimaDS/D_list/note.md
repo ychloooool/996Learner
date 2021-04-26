@@ -370,10 +370,10 @@ public static Node getEntrance(Node head) {
 
 | 类名       | Stack\<T\>                                                   |
 | ---------- | :----------------------------------------------------------- |
-| 构造方法   | TwoWayLinkList()：创建LinkList对象                           |
+| 构造方法   | Stack()：创建Stack对象                                       |
 | 成员方法   | 1. public boolean isEmpty()：判断栈是否为空<br />2. public int size()：获取栈中元素的个数<br />3. public T pop()：弹出栈顶元素<br />4. public void push(T t)：向栈中压入元素t |
 | 成员内部类 | private class Node\<T\>：结点类                              |
-| 成员变量   | 1. private Node head：记录首结点<br />2. private int N：记录链表的长度 |
+| 成员变量   | 1. private Node head：记录首结点<br />2. private int N：记录栈保存元素个数 |
 
 
 
@@ -385,13 +385,126 @@ public static Node getEntrance(Node head) {
 
 思路：利用栈的特性。遍历字符串，在遇到"("时，压入栈，在遇到")"时，判断栈是否为空，如果为空，则说明不匹配，如果非空，则将"("弹出栈，遍历结束后，判断栈是否为空，如果非空，说明剩余"("没匹配，如果为空，则说明已匹配完。
 
+```java
+public static boolean isMatch(String line) {
+    Stack<Character> stack = new Stack<>();
+    for (int i = 0; i < line.length(); i++) {
+        char c = line.charAt(i);
+        if (c == '(') {
+            stack.push(c);
+        } else if (c == ')') {
+            Character temp = stack.pop();
+            if (temp == null) {
+                return false;
+            }
+        }
+    }
+    return stack.isEmpty();
+}
+```
+
 ##### 逆波兰表达式求值问题
 
 需求：逆波兰表达式，又称为后缀表达式，该表达式中运算符总是放在跟它相关的操作数之后。而中缀表达式中， 二元运算符总是置于两个操作数之间，但对于计算机而言，中缀表达式不具有规律性，难以解析。
 
+思路：利用栈保存操作数。遍历表达式，在遇到操作数时，直接压入栈中，在遇到操作符时，将栈顶的两个元素取出，按照运算符运算的规则运算出结果，并重新压入栈中。在遍历完字符串后，栈中应剩下唯一一个操作数，即是最后的计算结果
+
+```java
+public static int calculate(String[] notation) {
+    Stack<String> stack = new Stack<>();
+    for (String s : notation) {
+        switch (s) {
+            case "+": {
+                int latter = Integer.parseInt(stack.pop());
+                int former = Integer.parseInt(stack.pop());
+                stack.push(String.valueOf(former + latter));
+                break;
+            }
+            case "-": {
+                int latter = Integer.parseInt(stack.pop());
+                int former = Integer.parseInt(stack.pop());
+                stack.push(String.valueOf(former - latter));
+                break;
+            }
+            case "*": {
+                int latter = Integer.parseInt(stack.pop());
+                int former = Integer.parseInt(stack.pop());
+                stack.push(String.valueOf(former * latter));
+                break;
+            }
+            case "/": {
+                int latter = Integer.parseInt(stack.pop());
+                int former = Integer.parseInt(stack.pop());
+                stack.push(String.valueOf(former / latter));
+                break;
+            }
+            default:
+                stack.push(s);
+                break;
+        }
+    }
+    return Integer.parseInt(stack.pop());
+}
+```
 
 
 
+
+
+## 队列
+
+
+
+#### 队列的概念
+
+队列是一种基于先进先出（FIFO）的数据结构，是一种只能在一端进行插入，在另一端进行删除操作的特殊线性表。它按照先进先出的原则，先进入的数据，先出队列。
+
+
+
+#### 队列实现
+
+##### 队列API设计
+
+| 类名       | Queue\<T\>                                                   |
+| ---------- | :----------------------------------------------------------- |
+| 构造方法   | Queue()：创建Queue对象                                       |
+| 成员方法   | 1. public boolean isEmpty()：判断队列是否为空<br />2. public int size()：获取队列中元素的个数<br />3. public T dequeue()：从队列中拿出一个元素<br />4. public void enqueue(T t)：往队列中插入一个元素 |
+| 成员内部类 | private class Node\<T\>：结点类                              |
+| 成员变量   | 1. private Node head：记录首结点<br />2. private Node last: 记录尾结点<br />3. private int N：记录队列中的元素个数 |
+
+
+
+
+
+## 符号表
+
+
+
+#### 符号表的概念
+
+符号表最主要的目的就是将一个键和一个值关联起来，其内部保存的是键值对。
+
+在符号表中，每个键具有唯一性。
+
+
+
+#### 符号表实现
+
+##### 结点类API设计
+
+| 类名     | Node\<T\>                                                    |
+| -------- | ------------------------------------------------------------ |
+| 构造方法 | Node(Key key, Value value, Node next)：构建Node对象          |
+| 成员变量 | 1. public Key key：存储键<br />2. public Value value：存储值<br />3. public Node next：存储下一个结点 |
+
+##### API设计
+
+| 类名       | SymbolTable\<Key, Value\>                                    |
+| ---------- | ------------------------------------------------------------ |
+| 构造方法   | SymbolTable()：创建SymbolTable对象                           |
+| 成员变量   | 1. public Value get(Key key)：根据键key，找对应的值<br />2. public void put(Key key, Value value)：向符号表中插入一个键值对<br />3. public void delete(Key key)：删除键为key的键值对<br />4. public int size()：获取符号表的大小<br /> |
+| 成员内部类 | private class Node\<T\>：结点类                              |
+| 成员方法   | 1. private Node head：记录首结点<br />2. private int N：记录链表的长度 |
 
 
 

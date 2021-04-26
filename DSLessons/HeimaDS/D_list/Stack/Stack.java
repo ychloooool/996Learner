@@ -1,7 +1,5 @@
 package D_list.Stack;
 
-import D_list.LinkList.LinkList;
-
 import java.util.Iterator;
 
 public class Stack<T> implements Iterable<T> {
