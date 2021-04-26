@@ -86,6 +86,26 @@ public class LinkList<T> implements Iterable<T>{
         return -1;
     }
 
+    // 单链表反转
+    public void reverse() {
+        if (!isEmpty()) {
+            reverseNode(this.head.next);
+        }
+    }
+
+    // 反转单个结点
+    private Node reverseNode(Node current) {
+        if (current.next == null) {
+            this.head.next = current;
+            return current;
+        } else {
+            Node previous = reverseNode(current.next);
+            previous.next = current;
+            current.next = null;
+            return current;
+        }
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new LinkListIterator();

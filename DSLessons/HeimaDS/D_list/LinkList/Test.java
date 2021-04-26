@@ -6,7 +6,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-        basicTest();
+//        basicTest();
 
         iterableTest();
 
@@ -54,6 +54,10 @@ public class Test {
         list.insert(5);
         System.out.println(list);
         System.out.println(list.length());
+
+        list.reverse();
+
+        System.out.println(list);
 
         // iterator底层调用
         Iterator<Integer> iterator = list.iterator();

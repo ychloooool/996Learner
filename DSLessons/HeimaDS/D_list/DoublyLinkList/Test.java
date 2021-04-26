@@ -1,4 +1,4 @@
-package D_list.TwoWayLinkList;
+package D_list.DoublyLinkList;
 
 import D_list.LinkList.LinkList;
 
@@ -16,16 +16,25 @@ public class Test {
 
     public static void basicTest() {
 
-        LinkList<Integer> list = new LinkList<>();
-        list.insert(5);
-        list.insert(4);
-        list.insert(3);
-        list.insert(2);
+        DoublyLinkList<Integer> list = new DoublyLinkList<>();
         list.insert(1);
+        list.insert(2);
+        list.insert(3);
+        list.insert(4);
+        list.insert(5);
+        list.insert(6);
+        list.insert(7);
+        list.insert(8);
+        list.insert(9);
+        list.insert(10);
         System.out.println(list);
         System.out.println(list.length());
 
-        list.insert(2, 10);
+        list.insert(2, 88);
+        System.out.println(list);
+        System.out.println(list.length());
+
+        list.insert(7, 88);
         System.out.println(list);
         System.out.println(list.length());
 
@@ -36,7 +45,17 @@ public class Test {
         System.out.println(element1);
         System.out.println(element2);
 
+        int element3 = list.get(6);
+        int element4 = list.remove(6);
+        System.out.println(list);
+        System.out.println(list.length());
+        System.out.println(element3);
+        System.out.println(element4);
+
         System.out.println(list.indexOf(3));
+
+        System.out.println(list.getFirst());
+        System.out.println(list.getLast());
 
         System.out.println(list.isEmpty());
         System.out.println(list.length());
@@ -48,7 +67,7 @@ public class Test {
 
     public static void iterableTest() {
 
-        LinkList<Integer> list = new LinkList<>();
+        DoublyLinkList<Integer> list = new DoublyLinkList<>();
         list.insert(1);
         list.insert(2);
         list.insert(3);
