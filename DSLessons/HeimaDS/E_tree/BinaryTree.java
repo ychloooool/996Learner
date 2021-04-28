@@ -1,5 +1,7 @@
 package E_tree;
 
+import D_list.Queue.Queue;
+
 import java.util.Iterator;
 
 public class BinaryTree<Key extends Comparable<Key>, Value> implements Iterable<Key> {
@@ -37,8 +39,20 @@ public class BinaryTree<Key extends Comparable<Key>, Value> implements Iterable<
     }
 
     private Node put(Node node, Key key, Value value) {
-        // TODO: 2021/4/27
-        return null;
+        if (node == null) {
+            this.size++;
+            return new Node(key, value, null, null);
+        } else {
+            int result = key.compareTo(node.key);
+            if (result > 0) {
+                node.right = put(node.right, key, value);
+            } else if (result < 0) {
+                node.left = put(node.left, key, value);
+            } else {
+                node.value = value;
+            }
+            return node;
+        }
     }
 
     public Value get(Key key) {
@@ -46,8 +60,18 @@ public class BinaryTree<Key extends Comparable<Key>, Value> implements Iterable<
     }
     
     private Value get(Node node, Key key) {
-        // TODO: 2021/4/27  
-        return null;
+        if (node == null) {
+            return null;
+        } else {
+            int result = key.compareTo(node.key);
+            if (result > 0) {
+                return get(node.right, key);
+            } else if (result < 0) {
+                return get(node.left, key);
+            } else {
+                return node.value;
+            }
+        }
     }
     
     public void delete(Key key) {
@@ -55,60 +79,130 @@ public class BinaryTree<Key extends Comparable<Key>, Value> implements Iterable<
     }
     
     private Node delete(Node node, Key key) {
-        // TODO: 2021/4/27  
-        return null;
+        if (node == null) {
+            return null;
+        } else {
+            int result = key.compareTo(node.key);
+            if (result > 0) {
+                node.right = delete(node.right, key);
+            } else if (result < 0) {
+                node.left = delete(node.left, key);
+            } else {
+                if (node.right == null) {
+                    return node.left;
+                } else if (node.left == null) {
+                    return node.right;
+                } else {
+                    this.size--;
+                    Node temp = node.right;
+                    Node previous = null;
+                    if (temp.left == null) {
+                        temp.left = node.left;
+                    } else {
+                        while (temp.left != null) {
+                            previous = temp;
+                            temp = temp.left;
+                        }
+                        previous.left = temp.right;
+                        temp.left = node.left;
+                        temp.right = node.right;
+                    }
+                    return temp;
+                }
+            }
+            return node;
+        }
     }
 
     public void preOrderTraversal() {
+        System.out.print("preOrderTraversal: { ");
         preOrderTraversal(this.root);
+        System.out.println("}");
     }
 
     private void preOrderTraversal(Node node) {
-        // TODO: 2021/4/27
+        if (node == null) {
+            return;
+        }
+        System.out.print(node.key + " ");
+        preOrderTraversal(node.left);
+        preOrderTraversal(node.right);
     }
 
     public void inOrderTraversal() {
+        System.out.print("inOrderTraversal: { ");
         inOrderTraversal(this.root);
+        System.out.println("}");
     }
 
     private void inOrderTraversal(Node node) {
-        // TODO: 2021/4/27
+        if (node == null) {
+            return;
+        }
+        inOrderTraversal(node.left);
+        System.out.print(node.key + " ");
+        inOrderTraversal(node.right);
     }
 
     public void postOrderTraversal() {
+        System.out.print("postOrderTraversal: { ");
         postOrderTraversal(this.root);
+        System.out.println("}");
     }
 
     private void postOrderTraversal(Node node) {
-        // TODO: 2021/4/27
+        if (node == null) {
+            return;
+        }
+        postOrderTraversal(node.left);
+        postOrderTraversal(node.right);
+        System.out.print(node.key + " ");
     }
 
     public void levelOrderTraversal() {
-        levelOrderTraversal(this.root);
+        System.out.print("levelOrderTraversal: { ");
+        Queue<Node> queue = new Queue<>();
+        queue.enqueue(this.root);
+        while (!queue.isEmpty()) {
+            Node temp = queue.dequeue();
+            System.out.print(temp.key + " ");
+            if (temp.left != null) {
+                queue.enqueue(temp.left);
+            }
+            if (temp.right != null) {
+                queue.enqueue(temp.right);
+            }
+        }
+        System.out.println("}");
     }
 
-    private void levelOrderTraversal(Node node) {
-        // TODO: 2021/4/27
+    public Key getMax() {
+        Node temp = this.root;
+        while (temp.right != null) {
+            temp = temp.right;
+        }
+        return temp.key;
     }
 
-    public Value getMax() {
-        return getMax(this.root);
+    public Key getMin() {
+        Node temp = this.root;
+        while (temp.left != null) {
+            temp = temp.left;
+        }
+        return temp.key;
     }
 
-    private Value getMax(Node node) {
-        // TODO: 2021/4/27
-        return null;
+    public int depth() {
+        return depth(this.root);
     }
 
-    public Value getMin() {
-        return getMin(this.root);
+    private int depth(Node node) {
+        if (node == null) {
+            return 0;
+        } else {
+            return 1 + Math.max(depth(node.left), depth(node.right));
+        }
     }
-
-    private Value getMin(Node node) {
-        // TODO: 2021/4/27
-        return null;
-    }
-
 
     @Override
     public Iterator<Key> iterator() {
