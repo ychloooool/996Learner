@@ -7,8 +7,8 @@ public class DisjointSet {
 
     public DisjointSet(int count) {
         this.count = count;
-        this.groups = new int[this.count];
-        for (int i = 0; i < this.count; i++) {
+        this.groups = new int[count];
+        for (int i = 0; i < count; i++) {
             this.groups[i] = i;
         }
     }
@@ -27,11 +27,12 @@ public class DisjointSet {
 
     public void union(int p, int q) {
         if (!connected(p, q)) {
-            for (int i = 0; i < this.count; i++) {
+            for (int i = 0; i < this.groups.length; i++) {
                 if (groups[i] == groups[p]) {
                     groups[i] = groups[q];
                 }
             }
+            this.count--;
         }
     }
 

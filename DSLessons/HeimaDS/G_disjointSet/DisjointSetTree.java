@@ -7,8 +7,8 @@ public class DisjointSetTree {
 
     public DisjointSetTree(int count) {
         this.count = count;
-        this.groups = new int[this.count];
-        for (int i = 0; i < this.count; i++) {
+        this.groups = new int[count];
+        for (int i = 0; i < count; i++) {
             this.groups[i] = i;
         }
     }
@@ -33,6 +33,7 @@ public class DisjointSetTree {
         int qGroup = find(q);
         if (pGroup != qGroup) {
             this.groups[pGroup] = qGroup;
+            this.count--;
         }
     }
 

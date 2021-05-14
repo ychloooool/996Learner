@@ -7,8 +7,8 @@ public class DisjointSetAdvanced {
 
     public DisjointSetAdvanced(int count) {
         this.count = count;
-        this.groups = new int[this.count];
-        for (int i = 0; i < this.count; i++) {
+        this.groups = new int[count];
+        for (int i = 0; i < count; i++) {
             this.groups[i] = -1;
         }
     }
@@ -22,7 +22,7 @@ public class DisjointSetAdvanced {
     }
 
     public int find(int p) {
-        while (this.groups[p] < 0) {
+        while (this.groups[p] >= 0) {
             p = this.groups[p];
         }
         return p;
@@ -39,6 +39,7 @@ public class DisjointSetAdvanced {
                 this.groups[pGroup] += this.groups[qGroup];
                 this.groups[qGroup] = pGroup;
             }
+            this.count--;
         }
     }
 
